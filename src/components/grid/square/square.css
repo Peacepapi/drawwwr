@@ -1,8 +1,9 @@
 .square {
     height: 25px;
     width: 25px;
-    outline: 1px solid rgb(131, 216, 241);
+    border: .7px solid rgb(131, 216, 241);
     display: inline-block;
+    margin: .7px;
 }
 
 .isHover {

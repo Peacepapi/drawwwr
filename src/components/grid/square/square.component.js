@@ -12,7 +12,7 @@ export default class Square extends PureComponent {
                         mouseIsOver ? 'isHover':'';
         return (
             <div 
-                className={`${classes.square} ${classes[moreClass]}`}
+                className={`${classes.square} ${moreClass}`}
                 style={mouseIsDown ? {backgroundColor: this.props.color}:null}
                 id={`r${row}c${col}`}
                 onMouseDown={() => this.props.handleMouseDown(row,col)}

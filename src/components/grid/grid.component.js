@@ -3,8 +3,8 @@ import Square from './square/square.component';
 import classes from './grid.css';
 import Menu from '../menu/menu.component';
 
-const ROW_SIZE = 30;
-const COL_SIZE = 50;
+const ROW_SIZE = 27;
+const COL_SIZE = 40;
 
 export default class Grid extends Component {
     constructor() {
@@ -108,7 +108,7 @@ export default class Grid extends Component {
                 <div id={classes.grid}>
                     {this.state.grid.map((rows, rId) => {
                         return (
-                            <div className={`row${rId}`} key={`row${rId}`}>
+                            <div className={classes.rows} id={`row${rId}`} key={`row${rId}`}>
                                 {rows.map((el) => {
                                     return <Square 
                                         col={el.col} 
