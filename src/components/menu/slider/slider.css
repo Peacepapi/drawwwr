@@ -1,0 +1,23 @@
+label {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.slider {
+    margin: 0 10px;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 90%; /* Full-width */
+    height: 10px; /* Specified height */
+    background: #fff; /* Grey background */
+    outline: none; /* Remove outline */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #d3d3d3;
+    cursor: pointer;
+}

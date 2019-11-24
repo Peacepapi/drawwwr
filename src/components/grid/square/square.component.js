@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import './square.css';
+import classes from './square.css';
 
 export default class Square extends PureComponent {
  
@@ -12,7 +12,8 @@ export default class Square extends PureComponent {
                         mouseIsOver ? 'isHover':'';
         return (
             <div 
-                className={`square ${moreClass}`}
+                className={`${classes.square} ${classes[moreClass]}`}
+                style={mouseIsDown ? {backgroundColor: this.props.color}:null}
                 id={`r${row}c${col}`}
                 onMouseDown={() => this.props.handleMouseDown(row,col)}
                 onMouseUp={() => this.props.handleMouseUp()}

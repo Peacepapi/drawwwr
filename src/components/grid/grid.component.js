@@ -1,19 +1,20 @@
 import React ,{ Component } from 'react';
 import Square from './square/square.component';
-import ColorSlider from '../color-slider/color-slider.component';
-import './grid.css';
+import classes from './grid.css';
+import Menu from '../menu/menu.component';
 
-const ROW_SIZE = 25;
-const COL_SIZE = 40;
+const ROW_SIZE = 30;
+const COL_SIZE = 50;
 
 export default class Grid extends Component {
     constructor() {
         super();
         this.state = {
             grid: [],
-            colorPicked: '',
+            colorPicked: 'rgb(0,0,0)',
             squareIsPressed: [],
-            squareIsPressing: false
+            squareIsPressing: false,
+            usedPallete: []
         }
     }
 
@@ -35,19 +36,26 @@ export default class Grid extends Component {
     handleMouseDown = (row, col) => {
         const newGrid = this.state.grid.slice();
         const newSquarePressed = this.state.squareIsPressed.slice();
+        const newUsedPallete = this.state.usedPallete.slice();
         const square = newGrid[row][col];
 
         const newSquare = {
             ...square,
+            color: this.state.colorPicked,
             mouseIsDown: true,
         }
         newSquarePressed.push(`r${row}c${col}`);
         newGrid[row][col] = newSquare;
+
+        if(!newUsedPallete.find(x => x === this.state.colorPicked)) {
+            newUsedPallete.push(this.state.colorPicked);
+        }
+
         this.setState({grid: newGrid, 
             squareIsPressed: newSquarePressed,
-            squareIsPressing: true
+            squareIsPressing: true,
+            usedPallete: newUsedPallete
         });
-
     }
 
     handleMouseMove = (row, col) => {
@@ -57,6 +65,12 @@ export default class Grid extends Component {
 
     handleMouseUp = () => {
         this.setState({squareIsPressing: false});
+    }
+
+    handleUpdateRGB = (rgb) => {
+        const newState = Object.assign({}, this.state);
+        newState.colorPicked = rgb;
+        this.setState({...newState});
     }
 
     createGrid = () => {
@@ -78,15 +92,20 @@ export default class Grid extends Component {
             mouseIsOver: false,
             mouseIsDown: false,
             mouseIsMoving: false,
+            color:'',
             key:`r${row}c${col}`
         }
     }
 
     render() {
         return (
-            <div className='wrapper'>
-                <ColorSlider />
-                <div id='grid'>
+            <div className={classes.container}>
+                <Menu 
+                    handleUpdateRGB={this.handleUpdateRGB} 
+                    colorPicked={this.state.colorPicked}
+                    colors={this.state.usedPallete}
+                />
+                <div id={classes.grid}>
                     {this.state.grid.map((rows, rId) => {
                         return (
                             <div className={`row${rId}`} key={`row${rId}`}>
@@ -95,7 +114,7 @@ export default class Grid extends Component {
                                         col={el.col} 
                                         row={el.row} 
                                         key={el.key}
-                                        squareIsPressing={this.state.squareIsPressing}
+                                        color={el.color}
                                         mouseIsOver={el.mouseIsOver}
                                         mouseIsDown={el.mouseIsDown}
                                         handleMouseDown={this.handleMouseDown}

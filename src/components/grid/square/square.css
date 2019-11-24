@@ -1,16 +1,16 @@
 .square {
     height: 25px;
     width: 25px;
-    outline: 1px solid rgb(211,211,211);
+    outline: 1px solid rgb(131, 216, 241);
     display: inline-block;
 }
 
 .isHover {
-    background-color: red;
+    background-color: rgb(131, 216, 241);
 }
 
 .isSelected {
-    background-color: blue;
+    background-color: rgb(0, 0, 0);
 }
 
 *, *::after, *::before {

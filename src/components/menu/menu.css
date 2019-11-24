@@ -1,0 +1,12 @@
+.menu {
+    min-width: 250px;
+    background: yellow;
+}
+
+#title {
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
