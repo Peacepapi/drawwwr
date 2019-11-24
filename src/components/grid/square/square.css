@@ -1,0 +1,21 @@
+.square {
+    height: 25px;
+    width: 25px;
+    outline: 1px solid rgb(211,211,211);
+    display: inline-block;
+}
+
+.isHover {
+    background-color: red;
+}
+
+.isSelected {
+    background-color: blue;
+}
+
+*, *::after, *::before {
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+	cursor: default;
+}
