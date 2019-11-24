@@ -10,3 +10,11 @@
     align-items: center;
     font-weight: 700;
 }
+
+footer {
+    text-align: center;
+}
+
+a {
+    margin: 0 20px;
+}

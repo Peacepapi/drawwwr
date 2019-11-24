@@ -21,6 +21,11 @@ export default class Menu extends PureComponent {
                     colors={this.props.colors} 
                     handleUpdateRGB={this.handleUpdateRGB}
                 />
+                <footer>
+                    <p>Built by Pier</p>
+                    <a href="https://github.com/Peacepapi">Github</a>
+                    <a href="https://www.linkedin.com/in/pier-yos-a22983a1/">Linkedln</a>
+                </footer>
             </div>
         )
     }
