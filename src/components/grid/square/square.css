@@ -10,10 +10,6 @@
     background-color: rgb(131, 216, 241);
 }
 
-.isSelected {
-    background-color: rgb(0, 0, 0);
-}
-
 *, *::after, *::before {
 	-webkit-user-select: none;
 	-webkit-user-drag: none;

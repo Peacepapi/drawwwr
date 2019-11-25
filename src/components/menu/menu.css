@@ -1,6 +1,6 @@
 .menu {
     min-width: 250px;
-    background: yellow;
+    background: rgb(131, 216, 241);
 }
 
 #title {
@@ -9,12 +9,4 @@
     justify-content: center;
     align-items: center;
     font-weight: 700;
-}
-
-footer {
-    text-align: center;
-}
-
-a {
-    margin: 0 20px;
 }
