@@ -5,7 +5,8 @@
 #grid {
     margin: 10px auto;
     text-align: center;
-    background-color: #f1f1f1;
+    background-color: rgb(241,241,241)
+    ;
 }
 
 .rows {
