@@ -3,8 +3,8 @@ import Square from './square/square.component';
 import classes from './grid.css';
 import Menu from '../menu/menu.component';
 
-const ROW_SIZE = 27;
-const COL_SIZE = 40;
+const ROW_SIZE = 34;
+const COL_SIZE = 48;
 
 export default class Grid extends Component {
     constructor() {
