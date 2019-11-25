@@ -12,7 +12,6 @@ export default class Grid extends Component {
         this.state = {
             grid: [],
             colorPicked: 'rgb(0,0,0)',
-            squareIsPressed: [],
             squareIsPressing: false,
             usedPallete: ['rgb(241,241,241)']
         }
@@ -35,7 +34,6 @@ export default class Grid extends Component {
 
     handleMouseDown = (row, col) => {
         const newGrid = this.state.grid.slice();
-        const newSquarePressed = this.state.squareIsPressed.slice();
         const newUsedPallete = this.state.usedPallete.slice();
         const square = newGrid[row][col];
 
@@ -44,7 +42,6 @@ export default class Grid extends Component {
             color: this.state.colorPicked,
             mouseIsDown: true,
         }
-        newSquarePressed.push(`r${row}c${col}`);
         newGrid[row][col] = newSquare;
 
         if(!newUsedPallete.find(x => x === this.state.colorPicked)) {
@@ -52,7 +49,6 @@ export default class Grid extends Component {
         }
 
         this.setState({grid: newGrid, 
-            squareIsPressed: newSquarePressed,
             squareIsPressing: true,
             usedPallete: newUsedPallete
         });
@@ -61,7 +57,7 @@ export default class Grid extends Component {
     handleMouseMove = (row, col) => {
         const { squareIsPressing, colorPicked } = this.state;
         const newGrid = this.state.grid.slice();
-        const square = newGrid[row][col];
+        const square = newGrid[row][col];  
         if(squareIsPressing && square.color !== colorPicked)
             this.handleMouseDown(row, col);
     }
