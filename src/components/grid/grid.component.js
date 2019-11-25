@@ -11,10 +11,19 @@ export default class Grid extends Component {
         super();
         this.state = {
             grid: [],
-            colorPicked: 'rgb(0,0,0)',
+            colorPicked: {red:0,green:0,blue:0},
             squareIsPressing: false,
-            usedPallete: ['rgb(241,241,241)']
+            usedPallete: [{red:241,green:241,blue:241}]
         }
+    }
+
+    resetState = () => {
+        this.setState({
+            grid: this.createGrid(),
+            colorPicked: {red:0,green:0,blue:0},
+            squareIsPressing: false,
+            usedPallete: [{red: 241, green: 241, blue:241}]
+        })
     }
 
     componentDidMount() {
@@ -36,7 +45,6 @@ export default class Grid extends Component {
         const newGrid = this.state.grid.slice();
         const newUsedPallete = this.state.usedPallete.slice();
         const square = newGrid[row][col];
-
         const newSquare = {
             ...square,
             color: this.state.colorPicked,
@@ -44,7 +52,7 @@ export default class Grid extends Component {
         }
         newGrid[row][col] = newSquare;
 
-        if(!newUsedPallete.find(x => x === this.state.colorPicked)) {
+        if(!newUsedPallete.find(x => this.compareColor(x, this.state.colorPicked))) {
             newUsedPallete.push(this.state.colorPicked);
         }
 
@@ -58,7 +66,7 @@ export default class Grid extends Component {
         const { squareIsPressing, colorPicked } = this.state;
         const newGrid = this.state.grid.slice();
         const square = newGrid[row][col];  
-        if(squareIsPressing && square.color !== colorPicked)
+        if(squareIsPressing && !this.compareColor(square.color, colorPicked))
             this.handleMouseDown(row, col);
     }
 
@@ -95,11 +103,18 @@ export default class Grid extends Component {
         }
     }
 
+    compareColor(obj1, obj2) {
+        if(obj1 && obj2)
+            return obj1.red === obj2.red && obj1.green === obj2.green && obj1.blue === obj2.blue
+        return false; 
+    }
+    
     render() {
         return (
             <div className={classes.container}>
                 <Menu 
                     handleUpdateRGB={this.handleUpdateRGB} 
+                    handleResetState={this.resetState}
                     colorPicked={this.state.colorPicked}
                     colors={this.state.usedPallete}
                 />

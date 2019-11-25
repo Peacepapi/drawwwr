@@ -6,8 +6,9 @@ export default class Square extends PureComponent {
     render() {
         const {row,col,mouseIsOver,mouseIsDown,color} = this.props;
         const moreClass = mouseIsOver ? 'isHover':'';
-        const style = color === 'rgb(241,241,241)' ? {}:
-                        mouseIsDown ? {backgroundColor: color}:null;
+        const {red, green, blue} = color;
+        const style = red === 241 && green === 241 &&blue === 241 ? {}:
+                        mouseIsDown ? {backgroundColor: `rgb(${red},${green},${blue})`}:null;
         return (
             <div 
                 className={`${classes.square} ${moreClass ? classes[moreClass]:''}`}

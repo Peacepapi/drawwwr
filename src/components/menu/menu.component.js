@@ -6,9 +6,28 @@ import { Instructions } from './instructions/instructions.component';
 import { Footer } from './footer/footer.component';
 
 export default class Menu extends PureComponent {
+    constructor() {
+        super();
 
-    handleUpdateRGB = (color) => {
-        this.props.handleUpdateRGB(color);
+        this.state = {
+            rgbValue: {
+                red:0,
+                green:0,
+                blue:0,
+            }
+        }
+    }
+
+    handleUpdateRGBValue = (colorState) => {
+        this.setState({rgbValue: colorState});
+        this.props.handleUpdateRGB(colorState);
+    }
+
+    handleResetState = () => {
+        this.props.handleResetState();
+        this.setState({rgbValue:{
+            red:0,green:0,blue:0}
+        })
     }
 
     render() {
@@ -16,12 +35,14 @@ export default class Menu extends PureComponent {
             <div className={classes.menu}>
                 <div id={classes.title}>Drawwwr</div>
                 <SliderList 
-                    handleUpdateRGB={this.handleUpdateRGB} 
+                    handleUpdateRGBValue={this.handleUpdateRGBValue} 
                     colorPicked={this.props.colorPicked}
+                    rgbValue={this.state.rgbValue}
                 />
                 <PalleteList 
-                    colors={this.props.colors} 
-                    handleUpdateRGB={this.handleUpdateRGB}
+                    colors={this.props.colors}
+                    handleUpdateRGBValue={this.handleUpdateRGBValue}
+                    handleResetState={this.handleResetState}
                 />
                 <Instructions />
                 <Footer />
