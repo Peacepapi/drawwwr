@@ -32,7 +32,9 @@ export default class PalleteList extends Component {
                         />
                     })}
                 </div>
-                <button onClick={() => this.props.handleResetState()}>Reset</button>
+                <div className={classes['btn-wrapper']}>
+                    <button className={classes.btn} onClick={() => this.props.handleResetState()}>Reset</button>
+                </div>
             </div>
         )
     }

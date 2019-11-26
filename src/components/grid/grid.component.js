@@ -22,8 +22,7 @@ export default class Grid extends Component {
         this.setState({
             grid: this.createGrid(),
             colorPicked: {red:0,green:0,blue:0},
-            squareIsPressing: false,
-            usedPallete: [{red: 241, green: 241, blue:241}]
+            squareIsPressing: false
         })
     }
 
