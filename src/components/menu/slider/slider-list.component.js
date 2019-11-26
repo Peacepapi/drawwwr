@@ -1,20 +1,23 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Slider } from './slider.component';
 import classes from './slider-list.css';
+import { compareColor } from '../../../Utils/utilities';
 
-export default class SliderList extends PureComponent {
+export default class SliderList extends Component {
 
     handleChangeValue = (color, value) => {
         const newState = Object.assign({}, this.props.rgbValue);
         newState[color] = Number(value);
-        console.log(newState);
         this.props.handleUpdateRGBValue(newState);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return !compareColor(nextProps.colorPicked, this.props.colorPicked) || 
+                !compareColor(nextProps.rgbValue, this.props.rgbValue); 
+    }
 
     render() {
         const {red,green,blue} = this.props.colorPicked;
-        console.log(this.props);
         return (
             <div id='color-slider'>
                 <div 

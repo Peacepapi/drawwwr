@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import SliderList from './slider/slider-list.component';
 import PalleteList from './pallete/pallete-list.component';
 import classes from './menu.css';
 import { Instructions } from './instructions/instructions.component';
 import { Footer } from './footer/footer.component';
+import { compareColor } from '../../Utils/utilities';
 
-export default class Menu extends PureComponent {
+export default class Menu extends Component {
     constructor() {
         super();
-
         this.state = {
             rgbValue: {
                 red:0,
@@ -16,6 +16,19 @@ export default class Menu extends PureComponent {
                 blue:0,
             }
         }
+    
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(!compareColor(nextProps.colorPicked, this.props.colorPicked))
+            return true;
+        if(nextProps.colors.length === this.props.colors.length) {
+            for(let i = 0; nextProps.colors.length;i++) {
+                if(!compareColor(nextProps.colors[i], nextProps.colors[i]))
+                    return true;
+            }
+        }
+        return false;
     }
 
     handleUpdateRGBValue = (colorState) => {

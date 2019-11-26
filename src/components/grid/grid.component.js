@@ -2,6 +2,7 @@ import React ,{ Component } from 'react';
 import Square from './square/square.component';
 import classes from './grid.css';
 import Menu from '../menu/menu.component';
+import { compareColor } from '../../Utils/utilities';
 
 const ROW_SIZE = 34;
 const COL_SIZE = 48;
@@ -52,7 +53,7 @@ export default class Grid extends Component {
         }
         newGrid[row][col] = newSquare;
 
-        if(!newUsedPallete.find(x => this.compareColor(x, this.state.colorPicked))) {
+        if(!newUsedPallete.find(x => compareColor(x, this.state.colorPicked))) {
             newUsedPallete.push(this.state.colorPicked);
         }
 
@@ -66,7 +67,7 @@ export default class Grid extends Component {
         const { squareIsPressing, colorPicked } = this.state;
         const newGrid = this.state.grid.slice();
         const square = newGrid[row][col];  
-        if(squareIsPressing && !this.compareColor(square.color, colorPicked))
+        if(squareIsPressing && !compareColor(square.color, colorPicked))
             this.handleMouseDown(row, col);
     }
 
@@ -101,12 +102,6 @@ export default class Grid extends Component {
             color:'',
             key:`r${row}c${col}`
         }
-    }
-
-    compareColor(obj1, obj2) {
-        if(obj1 && obj2)
-            return obj1.red === obj2.red && obj1.green === obj2.green && obj1.blue === obj2.blue
-        return false; 
     }
     
     render() {
